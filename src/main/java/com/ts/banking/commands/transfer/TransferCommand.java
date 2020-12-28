@@ -47,7 +47,6 @@ public class TransferCommand extends AbstractTransactionCommand<TransferReq, Tra
     }
 
     @Override
-    @Transactional
     protected void processRequest(Transaction transaction) {
 
         transactionRepository.save(transaction);

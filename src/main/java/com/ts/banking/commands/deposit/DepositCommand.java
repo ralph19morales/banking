@@ -42,7 +42,6 @@ public class DepositCommand extends AbstractTransactionCommand<DepositReq, Depos
     }
 
     @Override
-    @Transactional
     protected void processRequest(Transaction transaction) {
 
         transactionRepository.save(transaction);

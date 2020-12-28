@@ -5,6 +5,7 @@ import com.ts.banking.persistence.entities.Transaction;
 import com.ts.banking.persistence.repositories.AccountRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -20,6 +21,7 @@ public abstract class AbstractTransactionCommand<I extends BaseReq, O extends Ba
     }
 
     @Override
+    @Transactional
     public O execute(I req) {
         Transaction transaction = validateAndGetTransaction(req);
         processRequest(transaction);

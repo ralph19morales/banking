@@ -42,7 +42,6 @@ public class WithdrawalCommand extends AbstractTransactionCommand<WithdrawalReq,
     }
 
     @Override
-    @Transactional
     protected void processRequest(Transaction transaction) {
 
         transactionRepository.save(transaction);
