@@ -27,7 +27,7 @@ public abstract class AbstractTransactionCommand<I extends BaseReq, O extends Ba
     }
 
     protected Transaction validateAndGetTransaction(I request) {
-        if (!(request.getAmount().compareTo(BigDecimal.ZERO) > 0)) {
+        if (request.getAmount() == null || !(request.getAmount().compareTo(BigDecimal.ZERO) > 0)) {
             throw new RuntimeException("Amount should be greater than ZERO");
         }
 

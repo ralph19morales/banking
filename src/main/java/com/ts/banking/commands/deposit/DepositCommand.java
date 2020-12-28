@@ -32,6 +32,11 @@ public class DepositCommand extends AbstractTransactionCommand<DepositReq, Depos
     @Override
     protected Transaction validateAndGetTransaction(DepositReq request) {
         Transaction transaction = super.validateAndGetTransaction(request);
+
+        if(request.getDestination() == null) {
+            throw new RuntimeException("Destination is missing");
+        }
+
         transaction.setTransactionType(TransactionType.DEPOSIT);
         return transaction;
     }

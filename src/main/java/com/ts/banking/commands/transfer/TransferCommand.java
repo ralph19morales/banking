@@ -32,6 +32,16 @@ public class TransferCommand extends AbstractTransactionCommand<TransferReq, Tra
     @Override
     protected Transaction validateAndGetTransaction(TransferReq request) {
         Transaction transaction = super.validateAndGetTransaction(request);
+
+        if(request.getDestination() == null) {
+            throw new RuntimeException("Destination is missing");
+        }
+
+
+        if(request.getSource() == null) {
+            throw new RuntimeException("Source is missing");
+        }
+
         transaction.setTransactionType(TransactionType.TRANSFER);
         return transaction;
     }

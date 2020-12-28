@@ -32,6 +32,11 @@ public class WithdrawalCommand extends AbstractTransactionCommand<WithdrawalReq,
     @Override
     protected Transaction validateAndGetTransaction(WithdrawalReq request) {
         Transaction transaction = super.validateAndGetTransaction(request);
+
+        if(request.getSource() == null) {
+            throw new RuntimeException("Source is missing");
+        }
+
         transaction.setTransactionType(TransactionType.WITHDRAWAL);
         return transaction;
     }
