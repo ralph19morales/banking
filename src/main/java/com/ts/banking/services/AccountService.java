@@ -1,15 +1,18 @@
 package com.ts.banking.services;
 
 import com.ts.banking.persistence.entities.Account;
+import com.ts.banking.persistence.entities.AccountHistory;
 import com.ts.banking.persistence.entities.Person;
 import com.ts.banking.persistence.repositories.AccountHistoryRepository;
 import com.ts.banking.persistence.repositories.AccountRepository;
 import com.ts.banking.persistence.repositories.PersonRepository;
 import lombok.*;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +36,11 @@ public class AccountService {
                 .name(account.getPerson().getFullName())
                 .email(account.getPerson().getEmail())
                 .build();
+    }
+
+    public List<AccountHistory> getAccountSummaryLast10(Long accountId) {
+        return accountHistoryRepository.findFirst10ByAccountIdOrderByIdDesc(accountId);
+
     }
 
     public AccountSummary createAccount(CreateAccountReq req) {
